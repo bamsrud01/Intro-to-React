@@ -39,6 +39,6 @@ module.exports = {
           'NODE_ENV': '"development"'
         }
       }),
-      new webpack.HotModuleReplacementPlugin();
+      new webpack.HotModuleReplacementPlugin()
     ]
 };
