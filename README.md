@@ -7,3 +7,7 @@
 ## 2. React Tutorial
   - This subfolder contains the result of following the React tutorial at facebook.github.io/react/tutorial/tutorial.html
   - Built March 2017
+
+## 3. React Scoreboard
+  - Scoreboard application built following Treehouse's React course
+  - Built March 2017
