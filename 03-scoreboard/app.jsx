@@ -1,11 +1,11 @@
-function Application() {
+function Application(props) {
   //  All react components must be contained in a single element
   //  React components in JSX look like HTML, but are not.  It is compiled into JavaScript
   //  Use className instead of class, as class is reserved for OOP in JavaScript
   return (
     <div className="scoreboard">
       <div className="header">
-        <h1>Scoreboard</h1>
+        <h1>{props.title}</h1>
       </div>
       <div className="players">
         <div className="player">
@@ -37,4 +37,16 @@ function Application() {
   );
 }
 
-ReactDOM.render(<Application />, document.getElementById('container'));
+//  Define required prop types
+Application.propTypes = {
+  //  Can make a prop required, like this:
+  //  title: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string,
+};
+
+//  Default values of properties
+Application.defaultProps = {
+  title: "Scoreboard",
+};
+
+ReactDOM.render(<Application title="My Scoreboard" />, document.getElementById('container'));
