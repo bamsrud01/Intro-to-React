@@ -1,37 +1,54 @@
+function Header(props) {
+  return (
+    <div className="header">
+      <h1>{props.title}</h1>
+    </div>
+  );
+}
+
+Header.propTypes = {
+  title: React.PropTypes.string.isRequired,
+};
+
+function Counter(props) {
+  return (
+    <div className="counter">
+      <button className="counter-action decrement"> - </button>
+      <div className="counter-score"> {props.score} </div>
+      <button className="counter-action increment"> + </button>
+    </div>
+  );
+}
+
+Counter.propTypes = {
+  score: React.PropTypes.number.isRequired,
+}
+
+function Player(props) {
+  return (
+    <div className="player">
+      <div className="player-name">
+        {props.name}
+      </div>
+      <div className="player-score">
+        <Counter score={props.score} />
+      </div>
+    </div>
+  );
+}
+
+Player.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  score: React.PropTypes.number.isRequired,
+}
+
 function Application(props) {
-  //  All react components must be contained in a single element
-  //  React components in JSX look like HTML, but are not.  It is compiled into JavaScript
-  //  Use className instead of class, as class is reserved for OOP in JavaScript
   return (
     <div className="scoreboard">
-      <div className="header">
-        <h1>{props.title}</h1>
-      </div>
+      <Header title={props.title} />
       <div className="players">
-        <div className="player">
-          <div className="player-name">
-            Barrett Amsrud
-          </div>
-          <div className="player-score">
-            <div className="counter">
-              <button className="counter-action decrement"> - </button>
-              <div className="counter-score"> 15 </div>
-              <button className="counter-action increment"> + </button>
-            </div>
-          </div>
-        </div>
-        <div className="player">
-          <div className="player-name">
-            Andrew Carlson
-          </div>
-          <div className="player-score">
-            <div className="counter">
-              <button className="counter-action decrement"> - </button>
-              <div className="counter-score"> 10 </div>
-              <button className="counter-action increment"> + </button>
-            </div>
-          </div>
-        </div>
+        <Player name="Barrett Amsrud" score={15} />
+        <Player name="Andrew Carlson" score={10} />
       </div>
     </div>
   );
@@ -39,7 +56,6 @@ function Application(props) {
 
 //  Define required prop types
 Application.propTypes = {
-  //  Can make a prop required, like this:
   //  title: React.PropTypes.string.isRequired,
   title: React.PropTypes.string,
 };
