@@ -28,15 +28,21 @@ Header.propTypes = {
   title: React.PropTypes.string.isRequired,
 };
 
-function Counter(props) {
-  return (
-    <div className="counter">
-      <button className="counter-action decrement"> - </button>
-      <div className="counter-score"> {props.score} </div>
-      <button className="counter-action increment"> + </button>
-    </div>
-  );
-}
+//  We can create a class in React.  Use this.props.score to get it directly from class
+var Counter = React.createClass({
+  propTypes: {
+    score: React.PropTypes.number.isRequired,
+  },
+  render: function() {
+    return (
+      <div className="counter">
+        <button className="counter-action decrement"> - </button>
+        <div className="counter-score"> {this.props.score} </div>
+        <button className="counter-action increment"> + </button>
+      </div>
+    );
+  }
+});
 
 Counter.propTypes = {
   score: React.PropTypes.number.isRequired,
