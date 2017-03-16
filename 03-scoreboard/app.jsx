@@ -30,18 +30,20 @@ Header.propTypes = {
 
 //  We can create a class in React.  Use this.props.score to get it directly from class
 var Counter = React.createClass({
-  propTypes: {},
+  propTypes: {
+    initialScore: React.PropTypes.number.isRequired,
+  },
   getInitialState: function() {
     return {
-      score: 0,
+      score: this.props.initialScore,
     }
   },
-  incrementScore: function(e) {
+  incrementScore: function() {
     this.setState({
       score: this.state.score + 1
     });
   },
-  decrementScore: function(e) {
+  decrementScore: function() {
     this.setState({
       score: this.state.score - 1
     });
@@ -64,7 +66,7 @@ function Player(props) {
         {props.name}
       </div>
       <div className="player-score">
-        <Counter />
+        <Counter initialScore={props.score} />
       </div>
     </div>
   );
