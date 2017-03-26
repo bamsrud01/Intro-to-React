@@ -22,20 +22,53 @@ var Stopwatch = React.createClass({
   getInitialState: function() {
     return {
       running: false,
+      elapsedTime: 0,
+      previousTime: 0,  //  Used to calculate time accurately, keeping a record of the time each tick.
+        //  Simply adding 100 milliseconds is not as accurate because it takes some time to run the calculation
     }
   },
+  componentDidMount: function() {
+    //  Function will run when DOM is loaded
+    this.interval = setInterval(this.onTick, 100);
+  },
+  componentWillUnmount: function() {
+    //  Even if the interval from componentDidMount() is removed from DOM, it will continue to run
+    //  componentWillUnmount() stops the function, preventing a memory leak
+    clearInterval(this.interval);
+    console.log('Cleared!');
+  },
+  onTick: function() {
+    if (this.state.running) {
+      var now = Date.now();
+      //  Substract current timestamp from previous timestamp to accurately record time as stopwatch ticks
+      this.setState({
+        previousTime: now,
+        elapsedTime: this.state.elapsedTime + (now - this.state.previousTime),
+      });
+    }
+    console.log('Tick');
+  },
   onStart: function() {
-    this.setState({ running: true });
+    this.setState({
+      running: true,
+      previousTime: Date.now(),  //  Initialize starting time
+    });
   },
   onStop: function() {
     this.setState({ running: false });
   },
-  onReset: function() {},
+  onReset: function() {
+    this.setState({
+      elapsedTime: 0,
+      previousTime: Date.now(),
+    });
+  },
   render: function() {
+    var seconds = Math.floor(this.state.elapsedTime / 1000);
     return (
       <div className="stopwatch">
         <h2>Stopwatch</h2>
-        <div className="stopwatch-time">0</div>
+        <div className="stopwatch-time">{seconds}</div>
         { this.state.running ?
           <button onClick={this.onStop}>Stop</button>
           :
