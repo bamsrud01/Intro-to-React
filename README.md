@@ -11,3 +11,7 @@
 ## 3. React Scoreboard
   - Scoreboard application built following Treehouse's React course
   - Built March 2017
+
+## 4. Learning React
+  - Built from following the Learning React course on Lynda
+  - June 2017
