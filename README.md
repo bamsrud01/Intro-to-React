@@ -13,5 +13,5 @@
   - March 2017
 
 ## 4. Learning React
-  - Built from following the Learning React course on Lynda
+  - Tutorial projects from the Learning React course on Lynda
   - June 2017
